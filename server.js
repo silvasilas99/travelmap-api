@@ -4,6 +4,8 @@ const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 const helmet = require('helmet');
 const morgan = require('morgan');
+const userRoute = require("./routes/users");
+const pinRoute = require("./routes/pins");
 
 dotenv.config();
 
@@ -21,5 +23,8 @@ mongoose
 app.use(express.json());
 app.use(helmet());
 app.use(morgan('common'));
+
+app.use("/api/users", userRoute);
+app.use("/api/pins", pinRoute);
 
 app.listen(5000, () => console.log('Server is running on port 5000.'));
